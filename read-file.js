@@ -17,7 +17,8 @@ fs.readFile('hello.txt', function(err, buffer) {
     console.log('error: ', err); //if null - it works
     return; //if there is an error, do not proceed
   }
-  console.log('got data: ', buffer);
+  var contents = buffer.toString();
+  console.log('contents: ', contents);
 });
 
-console.log('this happened before data was ready.');
+// console.log('this happened before data was ready.');
