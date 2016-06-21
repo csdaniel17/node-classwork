@@ -13,7 +13,10 @@ console.log('Contents: ' + contents);
 var fs = require('fs');
 
 fs.readFile('hello.txt', function(err, buffer) {
-  console.log('error: ', err); //if null - it works
+  if (err) {
+    console.log('error: ', err); //if null - it works
+    return; //if there is an error, do not proceed
+  }
   console.log('got data: ', buffer);
 });
 
