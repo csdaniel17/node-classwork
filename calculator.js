@@ -7,8 +7,7 @@ console.log(sum);
 //bonus - for any amount of numbers
 var sum = 0;
 for (var i = 2; i < process.argv.length; i++) {
-  var numToAdd = Number(process.argv[i]);
-  sum += numToAdd;
+  sum += Number(process.argv[i]);
 }
 
 console.log(sum);
