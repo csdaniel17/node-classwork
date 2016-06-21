@@ -37,6 +37,11 @@ function getWeather(city, callback) {
       return;
     }
     var data = JSON.parse(body);
+    if (data.cod === '404') {
+      var error = new Error(data.message);
+      callback(error);
+      return;
+    }
     callback(null, data);
     // try {
     //   var data = JSON.parse(body);
