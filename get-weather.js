@@ -9,12 +9,33 @@ var cities = [
   'Philadelphia, PA'
 ];
 
+/* version 1
+cities.forEach(function(city) {
+  getWeather(city, function(err, data) {
+    console.log(data.name + ' temp: ' + data.main.temp + '°');
+  });
+});
+*/
+
+/* version 2 */
 async.map(cities, getWeather, function(err, results) {
   var temps = results.map(function(result) {
     return result.main.temp;
   });
+
+  var max = 0;
+  for (var i = 0; i < temps.length; i++) {
+    var temp = temps[i];
+    if (temp > max) {
+      max = temp;
+    }
+  }
+
+  console.log('max temp is: ' + max);
+
   console.log('the temps are: ' + temps);
   console.log('max temp is: ' + maxTemp(results));
+  console.log('max temp is: ' + getMax(temps));
 });
 
 function maxTemp(results) {
@@ -27,6 +48,10 @@ function maxTemp(results) {
     }
   }
   return (city + ' is the hottest city with a temp of ' + max);
+}
+
+function getMax(temps) {
+  return Math.max.apply(null, temps);
 }
 
 function getWeather(city, callback) {
