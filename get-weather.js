@@ -36,6 +36,7 @@ async.map(cities, getWeather, function(err, results) {
   console.log('the temps are: ' + temps);
   console.log('max temp is: ' + maxTemp(results));
   console.log('max temp is: ' + maxTemp2(temps));
+  console.log('max temp is: ' + maxTemp3(temps));
 });
 
 function maxTemp(results) {
@@ -52,6 +53,16 @@ function maxTemp(results) {
 
 function maxTemp2(temps) {
   return Math.max.apply(null, temps);
+}
+
+function maxTemp3(temps) {
+  return temps.reduce(function(max, temp) {
+    if (max > temp) {
+      return max;
+    } else {
+      return temp;
+    }
+  }, 0);
 }
 
 function getWeather(city, callback) {
